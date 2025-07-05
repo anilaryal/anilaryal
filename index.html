@@ -3,32 +3,53 @@
 <head>
   <meta charset="utf-8">
   <title>Dr. Anil Aryal</title>
-  <link rel="stylesheet" href="css/main.css"> <!-- CSS Link -->
+  <link rel="stylesheet" href="css/main.css"> <!-- External CSS -->
   <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
     .tabcontent {
       display: none;
     }
+
     .tabcontent.active {
       display: block;
     }
+
     .tab {
       overflow: hidden;
       border-bottom: 1px solid #ccc;
+      padding-left: 0;
     }
+
     .tab li {
       display: inline;
+      list-style: none;
       margin-right: 10px;
     }
+
     .tab li a {
-      padding: 10px;
+      padding: 10px 15px;
       text-decoration: none;
-      background-color: #f1f1f1;
       border: 1px solid #ccc;
       border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      color: white;
     }
+
+    /* Unique colors for each tab */
+    .tab li a.home { background-color: #4CAF50; }           /* Green */
+    .tab li a.research { background-color: #2196F3; }        /* Blue */
+    .tab li a.publications { background-color: #9C27B0; }    /* Purple */
+    .tab li a.achievements { background-color: #FF9800; }    /* Orange */
+    .tab li a.contact { background-color: #E91E63; }         /* Pink */
+    .tab li a.blog { background-color: #607D8B; }            /* Gray-blue */
+
+    /* Active tab color stays the same but with bold text */
     .tab li a.active {
-      background-color: white;
-      border-bottom: 1px solid white;
+      font-weight: bold;
+      opacity: 0.9;
     }
   </style>
 </head>
