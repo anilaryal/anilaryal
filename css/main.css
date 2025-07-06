@@ -70,7 +70,6 @@ header {
 }
 p{
     margin-top: 8px;
-    line-height: 2; /* Adjust the value as needed */
   }
 
 hr {
@@ -113,6 +112,10 @@ li{
                 transition: 0.3s;
                 font-size: 17px;
             }
+
+            p {
+                line-height: 1.8; /* Adjust the value as needed */
+              }
             
             /* Change background color of links on hover */
             ul.tab li a:hover {
