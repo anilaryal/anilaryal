@@ -1,7 +1,7 @@
 body {
     text-align: justify;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0px;
+    margin: 5px;
     background-color: #eee;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -10,7 +10,7 @@ body {
 .title {
     font-size: 65px;
     font-style: normal;
-    background-color: darkgray;
+    background-color: dark gray;
 }
 
 h1 {
@@ -30,7 +30,7 @@ h3 {
 }
 
 h4 {
-    background-color: cadetblue;
+    background-color: cadet blue;
     font-size: 40px;
     color: black;
     margin: 0px;
