@@ -25,6 +25,7 @@ h2 {
 
 h3 {
     color: black;
+    font-size: 35px;
     margin: 0px;
 }
 
@@ -32,6 +33,7 @@ h4 {
     background-color: cadetblue;
     color: black;
     margin: 0px;
+    font-size: 65px;
     line-height: 2;
 }
 
