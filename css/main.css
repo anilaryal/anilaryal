@@ -27,11 +27,12 @@ h3 {
     font-size: 35px;
     color: black;
     margin: 0px;
+    line-height: 2;
 }
 
 h4 {
     background-color: cadet blue;
-    font-size: 40px;
+    font-size: 20px;
     color: black;
     margin: 0px;
     line-height: 2;
