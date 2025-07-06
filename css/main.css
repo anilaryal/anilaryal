@@ -129,6 +129,22 @@ ul.tab li a.active {
     padding: 6px 12px;
     animation: fadeEffect 1s;
 }
+details {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  color: #004466;
+}
+
+details ul {
+  margin-left: 20px;
+}
 
 @keyframes fadeEffect {
     from { opacity: 0; }
