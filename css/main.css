@@ -114,7 +114,8 @@ li{
             }
 
             p {
-                line-height: 1.8; /* Adjust the value as needed */
+                margin-top: 8px;
+                line-height:2; /* Adjust the value as needed */
               }
             
             /* Change background color of links on hover */
