@@ -41,7 +41,7 @@ h4 {
 
 p {
     margin-top: 8px;
-    line-height: 2; /* ✅ Increased line spacing */
+     /*line-height: 2; /* ✅ Increased line spacing */
 }
 
 ol {
