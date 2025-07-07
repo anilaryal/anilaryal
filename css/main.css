@@ -28,7 +28,7 @@ h3 {
     background-color: #608b84;
     color: black;
     margin: 0px;
-    line-height: 2;
+    /* line-height: 2; */
 }
 
 h4 {
@@ -36,7 +36,7 @@ h4 {
     /* font-size: 35px; */
     color: black;
     margin: 0px;
-    line-height: 2;
+    /* line-height: 2; */
 }
 
 p {
