@@ -1,0 +1,22 @@
+# CDS API Configuration Template
+# Copy this content to ~/.cdsapirc (Linux/Mac) or %USERPROFILE%\.cdsapirc (Windows)
+# 
+# To get your API key:
+# 1. Register at https://cds.climate.copernicus.eu/
+# 2. Login and go to your profile page
+# 3. Copy your UID and API key from the "API key" section
+# 4. Replace the values below with your actual credentials
+
+url: https://cds.climate.copernicus.eu/api/v2
+key: {uid}:{your-api-key}
+
+# Example (replace with your actual values):
+# url: https://cds.climate.copernicus.eu/api/v2
+# key: 12345:abcd1234-ef56-7890-ghij-klmnopqrstuv
+
+# Important notes:
+# - The file should be named exactly ".cdsapirc" (note the leading dot)
+# - No quotes around the values
+# - Make sure there are no extra spaces
+# - On Windows, the file should be in your user home directory
+# - On Linux/Mac, the file should be in your home directory (~/)
