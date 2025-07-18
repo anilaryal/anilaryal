@@ -19,7 +19,7 @@ h1 {
 
 h2 {
     background-color: #607d8b;
-    color: black;
+    color: #ffffff;
     margin-bottom: 0px;
 }
 
@@ -34,7 +34,7 @@ h3 {
 h4 {
     background-color: cadet blue;
     /* font-size: 35px; */
-    color: white;
+    color: black;
     margin: 0px;
     /* line-height: 2; */
 }
