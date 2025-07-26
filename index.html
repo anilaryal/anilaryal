@@ -406,11 +406,20 @@
   </div>
 
   <!-- Copyright Section -->
-<div class="copyright py-4 text-white" style="background-color: #000;">
-  <div class="container d-flex justify-content-between align-items-center">
-    <small>&copy; 2025 Anil Aryal</small>
-    <div id="dateTime">Loading...</div>
-  </div>
+<style>
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    background-color: #000;
+  }
+</style>
+
+<div class="footer-container">
+  <small>&copy; 2025 Anil Aryal</small>
+  <div id="dateTime">Loading...</div>
 
   <script>
     function updateDateTime() {
@@ -419,10 +428,7 @@
       document.getElementById('dateTime').textContent = formattedDateTime;
     }
 
-    // Update the date and time every second
     setInterval(updateDateTime, 1000);
-
-    // Initialize immediately
     updateDateTime();
   </script>
 </div>
