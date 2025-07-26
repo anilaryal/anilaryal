@@ -413,6 +413,22 @@
   </div>
 </div>
 
+<style>
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    background-color: #000;
+  }
+</style>
+
+<div class="footer-container">
+  <small>&copy; 2025 Anil Aryal</small>
+  <div id="dateTime">Loading...</div>
+</div>
+
 <script>
   function updateDateTime() {
     const now = new Date();
@@ -420,7 +436,6 @@
     document.getElementById('dateTime').textContent = formattedDateTime;
   }
 
-  // Make sure the DOM is loaded before running the script
   document.addEventListener('DOMContentLoaded', function () {
     updateDateTime();
     setInterval(updateDateTime, 1000);
