@@ -408,6 +408,21 @@
   <!-- Copyright Section -->
   <div class="copyright py-4 text-center text-white">
     <div class="container"><small>Copyright &copy; 2025 Anil Aryal</small></div>
+      <div id="dateTime">Loading...</div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const formattedDateTime = now.toLocaleString();
+      document.getElementById('dateTime').textContent = formattedDateTime;
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+
+    // Initialize immediately
+    updateDateTime();
+  </script>
   </div>
 
   <!-- Bootstrap core JS -->
