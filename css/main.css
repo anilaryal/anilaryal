@@ -155,3 +155,74 @@ details ul {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+/* -------- Analog clock -------- */
+.clock {
+  width: 180px;
+  height: 180px;
+  border: 6px solid #333;
+  border-radius: 50%;
+  position: relative;
+  margin: 12px 0;           /* tweak as you like */
+  background: #fff;
+}
+
+/* optional: match your site palette */
+.clock {
+  border-color: #607d8b;    /* same family as your h2 */
+  background: #fdfdfd;
+}
+
+.hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 100% 50%;   /* rotate around the right end */
+  transform: rotate(90deg);
+  transition: transform 0.1s linear;
+}
+
+.hand.hour {
+  width: 35%;
+  height: 4px;
+  background: #333;
+}
+
+.hand.minute {
+  width: 45%;
+  height: 3px;
+  background: #555;
+}
+
+.hand.second {
+  width: 50%;
+  height: 2px;
+  background: #e91e63;         /* matches your contact tab color */
+}
+
+.center-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #333;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* (Optional) ticks around the dial */
+.clock .tick {
+  position: absolute;
+  width: 2px;
+  height: 6px;
+  background: #607d8b;
+  top: 0;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.clock .tick.hour {
+  height: 10px;
+  background: #333;
+}
