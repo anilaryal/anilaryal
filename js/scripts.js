@@ -47,8 +47,36 @@ window.addEventListener('DOMContentLoaded', event => {
         responsiveNavItem.addEventListener('click', () => {
             if (window.getComputedStyle(navbarToggler).display !== 'none') {
                 navbarToggler.click();
-            }
+
+                  }
         });
+
+                // Analog Clock Setup
+function updateAnalogClock() {
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
+
+    const secondDeg = seconds * 6;
+    const minuteDeg = minutes * 6 + seconds * 0.1;
+    const hourDeg = ((hours % 12) + minutes / 60) * 30;
+
+    const hourHand = document.querySelector('#hourHand');
+    const minuteHand = document.querySelector('#minuteHand');
+    const secondHand = document.querySelector('#secondHand');
+
+    if (hourHand && minuteHand && secondHand) {
+        hourHand.style.transform = `rotate(${hourDeg}deg)`;
+        minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+        secondHand.style.transform = `rotate(${secondDeg}deg)`;
+    }
+}
+
+setInterval(updateAnalogClock, 1000);
+updateAnalogClock(); // run once immediately
+
+          
     });
 
 });
