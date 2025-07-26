@@ -151,16 +151,9 @@ details ul {
   margin-left: 20px;
 }
 
-<style>
-  .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    color: white;
-    background-color: #000;
-  }
-</style>
+.footer-container {
+  height: 50px; /* reduce from 100px to 50px or lower */
+}
 
 @keyframes fadeEffect {
     from { opacity: 0; }
