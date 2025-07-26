@@ -390,41 +390,55 @@
   </div>
 
   <!-- Copyright Section -->
-<div class="copyright py-4 text-white" style="background-color: #000;">
-  <div class="container d-flex justify-content-between align-items-center">
-    <small>&copy; 2025 Anil Aryal</small>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer with DateTime</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      color: white;
+      font-family: Arial, sans-serif;
+      background: url('https://i.gifer.com/Y1iC.gif') no-repeat center center/cover; /* Replace with your flowing water GIF URL or path */
+      background-size: cover;
+      height: 100px;
+    }
+
+    .footer-text {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    #dateTime {
+      font-style: italic;
+      text-shadow: 1px 1px 2px #000;
+    }
+  </style>
+
+  <div class="footer-container">
+    <div class="footer-text">&copy; 2025 Anil Aryal</div>
     <div id="dateTime">Loading...</div>
   </div>
-</div>
 
-<style>
-  .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    color: white;
-    background-color: black;
-  }
-</style>
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const formattedDateTime = now.toLocaleString();
+      document.getElementById('dateTime').textContent = formattedDateTime;
+    }
 
-<div class="footer-container">
-  <small>&copy; 2025 Anil Aryal</small>
-  <div id="dateTime">Loading...</div>
-</div>
-
-<script>
-  function updateDateTime() {
-    const now = new Date();
-    const formattedDateTime = now.toLocaleString();
-    document.getElementById('dateTime').textContent = formattedDateTime;
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-  });
-</script>
+    // Ensure DOM is loaded before running
+    document.addEventListener('DOMContentLoaded', function () {
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    });
+  </script>
 
 
   <!-- Bootstrap core JS -->
