@@ -152,7 +152,7 @@ details ul {
 }
 
 .footer-container {
-  height: 50px; /* reduce from 100px to 50px or lower */
+  height: 20px; /* reduce from 100px to 50px or lower */
 }
 
 @keyframes fadeEffect {
