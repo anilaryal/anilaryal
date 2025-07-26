@@ -417,23 +417,26 @@
   }
 </style>
 
-<div class="footer-container">
-  <small>&copy; 2025 Anil Aryal</small>
-  <div id="dateTime">
-    
+<div class="copyright py-4 text-white" style="background-color: #000;">
+  <div class="container d-flex justify-content-between align-items-center">
+    <small>&copy; 2025 Anil Aryal</small>
+    <div id="dateTime">Loading...</div>
   </div>
-
-  <script>
-    function updateDateTime() {
-      const now = new Date();
-      const formattedDateTime = now.toLocaleString();
-      document.getElementById('dateTime').textContent = formattedDateTime;
-    }
-
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-  </script>
 </div>
+
+<script>
+  function updateDateTime() {
+    const now = new Date();
+    const formattedDateTime = now.toLocaleString();
+    document.getElementById('dateTime').textContent = formattedDateTime;
+  }
+
+  // Make sure the DOM is loaded before running the script
+  document.addEventListener('DOMContentLoaded', function () {
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  });
+</script>
 
 
   <!-- Bootstrap core JS -->
