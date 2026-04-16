@@ -8,18 +8,16 @@
   <link rel="stylesheet" href="css/main.css">
   <style>
     :root {
-      --primary: #1a3a5c;
-      --accent: #2e7d9b;
-      --accent2: #1b9e6e;
-      --accent3: #e07b39;
-      --light: #f4f7fa;
-      --text: #2c3e50;
-      --muted: #6b7f95;
-      --border: #dde4ec;
-      --card-bg: #ffffff;
+      --primary:   #1a3a5c;
+      --primary-dk:#0d2640;
+      --accent:    #2e7d9b;
+      --light:     #f0f4f8;
+      --text:      #2c3e50;
+      --border:    #dde4ec;
+      --tab-h:     52px;        /* single source of truth for tab height */
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -28,324 +26,379 @@
       min-height: 100vh;
     }
 
-    /* ── HEADER AREA ── */
+    /* ════════════════════════════════
+       HEADER  –  two-column layout
+       left: photo + identity
+       right: scholar metrics card
+    ════════════════════════════════ */
     .header-section {
-      background: linear-gradient(135deg, #0d2640 0%, #1a3a5c 50%, #1e4d6b 100%);
-      padding: 2.5rem 2rem 0;
+      background: linear-gradient(135deg, var(--primary-dk) 0%, #1a3a5c 55%, #1e4d6b 100%);
+      padding: 2.4rem 3rem 2rem;
       position: relative;
       overflow: hidden;
     }
 
-    .header-section::before {
+    /* subtle radial glow top-right */
+    .header-section::after {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(46,125,155,0.18) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(46,125,155,0.16) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .header-inner {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       display: flex;
-      flex-direction: column;
+      align-items: center;          /* vertically center both columns */
+      justify-content: space-between;
+      gap: 2.5rem;
+    }
+
+    /* ── LEFT COLUMN: photo + identity ── */
+    .header-identity {
+      display: flex;
       align-items: center;
-      text-align: center;
-      gap: 1rem;
+      gap: 1.5rem;
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .profile-photo {
-      width: 140px; height: 140px;
+      width: 110px; height: 110px;
       border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.25);
+      border: 3px solid rgba(255,255,255,0.28);
       object-fit: cover;
       flex-shrink: 0;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.4);
     }
 
-    .header-text {
-      flex: 1;
-      color: white;
-      text-align: center;
+    .header-text { color: white; }
+
+    .header-text .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.3rem;
     }
 
     .header-text h1 {
       font-family: 'EB Garamond', serif;
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 600;
-      letter-spacing: 0.01em;
-      line-height: 1.2;
-      margin-bottom: 0.25rem;
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
     }
 
-    .header-text .role {
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.05em;
+    .header-text .subtitle {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 0.15rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.55rem;
     }
 
     .header-text .institute-link {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #7ecfeb;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
     }
     .header-text .institute-link:hover { text-decoration: underline; }
 
-    /* ── SCHOLAR METRICS STRIP ── */
-    .scholar-strip {
-      max-width: 700px;
-      margin: 1.5rem auto 0;
-      display: flex;
-      gap: 0;
-      border-radius: 12px 12px 0 0;
+    /* ── RIGHT COLUMN: scholar card ── */
+    .scholar-card {
+      flex: 0 0 auto;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
       overflow: hidden;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-bottom: none;
+      min-width: 380px;
+    }
+
+    .scholar-metrics {
+      display: flex;
     }
 
     .scholar-metric {
       flex: 1;
       text-align: center;
-      padding: 0.9rem 0.5rem;
+      padding: 1.1rem 0.6rem 0.9rem;
       position: relative;
-      transition: background 0.2s;
+      transition: background 0.18s;
+      cursor: default;
     }
 
-    .scholar-metric:not(:last-child)::after {
+    .scholar-metric:hover { background: rgba(255,255,255,0.09); }
+
+    .scholar-metric + .scholar-metric::before {
       content: '';
       position: absolute;
-      right: 0; top: 20%; bottom: 20%;
+      left: 0; top: 18%; bottom: 18%;
       width: 1px;
-      background: rgba(255,255,255,0.15);
-    }
-
-    .scholar-metric:hover {
-      background: rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.14);
     }
 
     .metric-value {
       font-family: 'EB Garamond', serif;
-      font-size: 1.85rem;
+      font-size: 2rem;
       font-weight: 600;
-      color: #ffffff;
+      color: #fff;
       line-height: 1;
-      margin-bottom: 0.25rem;
     }
 
     .metric-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.6);
+      margin-top: 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
     }
 
-    .metric-icon {
-      font-size: 1.1rem;
-      margin-bottom: 0.2rem;
-      display: block;
-    }
-
-    .scholar-badge {
+    .scholar-footer {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1rem;
-      background: rgba(255,255,255,0.07);
-      border-radius: 0 0 10px 10px;
-      margin: 0 auto;
-      max-width: 700px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-top: none;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.12);
     }
 
-    .scholar-badge a {
-      font-size: 0.75rem;
+    .scholar-footer a {
+      font-size: 0.72rem;
       color: #7ecfeb;
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.4rem;
     }
-
-    .scholar-badge a:hover { text-decoration: underline; }
+    .scholar-footer a:hover { text-decoration: underline; }
 
     .gs-dot {
       width: 7px; height: 7px;
       border-radius: 50%;
       background: #4bc4a0;
-      display: inline-block;
+      flex-shrink: 0;
       animation: pulse 2.5s infinite;
     }
 
     @keyframes pulse {
-      0%,100% { opacity:1; transform: scale(1); }
-      50% { opacity:0.5; transform: scale(0.8); }
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.45; transform:scale(0.75); }
     }
 
-    .update-note {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.35);
-      margin-left: auto;
-      padding-right: 0.5rem;
+    .scholar-footer .updated {
+      font-size: 0.67rem;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
     }
 
-    /* ── TABS ── */
+    /* ════════════════════════════════
+       TAB BAR  –  full-width strip,
+       tabs centered, meaningful height
+    ════════════════════════════════ */
     .tab-wrapper {
-      background: var(--primary);
-      padding: 0 2rem;
+      background: #112d47;                   /* slightly darker than header */
+      border-bottom: 3px solid #0a1e30;
     }
 
     .tab {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      display: flex;
-      justify-content: center;
       list-style: none;
-      gap: 0.25rem;
-      border-bottom: none;
-      overflow-x: auto;
+      display: flex;
+      justify-content: center;             /* CENTER the tabs */
+      padding: 0 2rem;
     }
 
+    .tab li { display: flex; }
+
     .tab li a {
-      display: block;
-      padding: 0.7rem 1.2rem;
-      text-decoration: none;
-      font-size: 0.83rem;
+      display: flex;
+      align-items: center;
+      height: var(--tab-h);                /* meaningful, consistent height */
+      padding: 0 1.6rem;
+      font-size: 0.84rem;
       font-weight: 500;
       letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.65);
-      border-radius: 6px 6px 0 0;
-      transition: all 0.2s;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;                 /* overlap wrapper border */
+      transition: color 0.18s, border-color 0.18s, background 0.18s;
       white-space: nowrap;
     }
 
-    .tab li a:hover { color: white; background: rgba(255,255,255,0.08); }
-    .tab li a.active { color: white; background: var(--light); color: var(--primary); font-weight: 600; }
+    .tab li a:hover {
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.05);
+      border-bottom-color: rgba(255,255,255,0.25);
+    }
 
-    /* ── CONTENT AREA ── */
+    .tab li a.active {
+      color: #ffffff;
+      border-bottom-color: #4bc4a0;        /* teal accent underline */
+      background: rgba(255,255,255,0.06);
+      font-weight: 600;
+    }
+
+    /* ════════════════════════════════
+       CONTENT
+    ════════════════════════════════ */
     .content-wrapper {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 2.2rem 3rem;
     }
 
     .tabcontent { display: none; }
-    .tabcontent.active { display: block; animation: fadeIn 0.25s ease; }
+    .tabcontent.active {
+      display: block;
+      animation: fadeIn 0.22s ease;
+    }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(5px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
 
     h3 {
       font-family: 'EB Garamond', serif;
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       color: var(--primary);
-      margin: 1.5rem 0 0.75rem;
-      padding-bottom: 0.35rem;
+      margin: 1.6rem 0 0.7rem;
+      padding-bottom: 0.3rem;
       border-bottom: 2px solid var(--border);
     }
-
     h3:first-child { margin-top: 0; }
 
-    p, li { line-height: 1.7; font-size: 0.92rem; color: var(--text); }
-    ul, ol { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+    p, li { line-height: 1.7; font-size: 0.91rem; color: var(--text); }
+    ul, ol { padding-left: 1.4rem; margin-bottom: 0.7rem; }
     li { margin-bottom: 0.3rem; }
 
     a { color: var(--accent); }
     a:hover { color: var(--primary); }
 
-    details summary { cursor: pointer; color: var(--accent); font-size: 0.88rem; margin: 0.5rem 0; }
+    details summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 0.86rem;
+      margin: 0.5rem 0;
+    }
     details summary:hover { color: var(--primary); }
 
-    /* ── FOOTER ── */
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
     .footer-container {
       background: var(--primary);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.6);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      font-size: 0.8rem;
-      margin-top: 2rem;
+      padding: 0.9rem 3rem;
+      font-size: 0.78rem;
+      margin-top: 2.5rem;
     }
-
     #dateTime { font-style: italic; }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .header-inner { flex-direction: column; text-align: center; }
-      .scholar-strip { flex-wrap: wrap; max-width: 95%; }
-      .scholar-badge { max-width: 95%; }
-      .scholar-metric { flex: 1 1 40%; }
+    /* ════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════ */
+    @media (max-width: 860px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .scholar-card { min-width: 0; width: 100%; }
+      .header-section { padding: 2rem 1.5rem 1.5rem; }
+      .content-wrapper { padding: 1.5rem; }
+      .footer-container { padding: 0.9rem 1.5rem; }
+    }
+
+    @media (max-width: 520px) {
+      .header-identity { flex-direction: column; align-items: flex-start; }
+      .tab li a { padding: 0 0.9rem; font-size: 0.78rem; }
+      .scholar-metrics { flex-wrap: wrap; }
+      .scholar-metric { flex: 1 1 45%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── HEADER ── -->
+  <!-- ══════════════════════════════════════
+       HEADER  –  identity LEFT | scholar RIGHT
+  ══════════════════════════════════════ -->
   <div class="header-section">
     <div class="header-inner">
-      <img src="phot_anil.JPG" alt="Anil Aryal" class="profile-photo">
-      <div class="header-text">
-        <div class="role">National Researcher · Water Resources &amp; Climate Change</div>
-        <h1>Dr. Anil Aryal</h1>
-        <div class="role" style="margin-top:0.3rem;">Hydrologist</div>
-        <div style="margin-top:0.5rem;">
+
+      <!-- LEFT: photo + name -->
+      <div class="header-identity">
+        <img src="phot_anil.JPG" alt="Dr. Anil Aryal" class="profile-photo">
+        <div class="header-text">
+          <div class="eyebrow">National Researcher &nbsp;·&nbsp; Water Resources &amp; Climate Change</div>
+          <h1>Dr. Anil Aryal</h1>
+          <div class="subtitle">Hydrologist</div>
           <a class="institute-link" href="https://www.iwmi.org/people/anil-aryal/" target="_blank">
             International Water Management Institute ↗
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- Google Scholar Metrics Strip -->
-    <!-- ✏️ UPDATE THESE VALUES manually after checking your Google Scholar profile -->
-    <div class="scholar-strip">
-      <div class="scholar-metric">
-        <span class="metric-icon">📖</span>
-        <div class="metric-value">543</div>  <!-- ✏️ Update: Total Citations -->
-        <div class="metric-label">Citations</div>
+      <!-- RIGHT: Google Scholar metrics card -->
+      <!-- ✏️ UPDATE the four metric-value numbers below from your Google Scholar profile -->
+      <div class="scholar-card">
+        <div class="scholar-metrics">
+          <div class="scholar-metric">
+            <div class="metric-value">543</div>   <!-- ✏️ Citations -->
+            <div class="metric-label">Citations</div>
+          </div>
+          <div class="scholar-metric">
+            <div class="metric-value">13</div>    <!-- ✏️ h-index -->
+            <div class="metric-label">h-index</div>
+          </div>
+          <div class="scholar-metric">
+            <div class="metric-value">17</div>    <!-- ✏️ i10-index -->
+            <div class="metric-label">i10-index</div>
+          </div>
+          <div class="scholar-metric">
+            <div class="metric-value">30+</div>   <!-- ✏️ Publications -->
+            <div class="metric-label">Publications</div>
+          </div>
+        </div>
+        <div class="scholar-footer">
+          <!-- ✏️ Replace YOUR_SCHOLAR_ID with your real Google Scholar user ID -->
+          <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank">
+            <span class="gs-dot"></span>
+            View Google Scholar Profile ↗
+          </a>
+          <span class="updated">Updated: April 2026</span>
+        </div>
       </div>
-      <div class="scholar-metric">
-        <span class="metric-icon">📈</span>
-        <div class="metric-value">13</div>   <!-- ✏️ Update: h-index -->
-        <div class="metric-label">h-index</div>
-      </div>
-      <div class="scholar-metric">
-        <span class="metric-icon">🔟</span>
-        <div class="metric-value">17</div>   <!-- ✏️ Update: i10-index -->
-        <div class="metric-label">i10-index</div>
-      </div>
-      <div class="scholar-metric">
-        <span class="metric-icon">📄</span>
-        <div class="metric-value">30+</div>  <!-- ✏️ Update: number of papers -->
-        <div class="metric-label">Publications</div>
-      </div>
-    </div>
-    <div class="scholar-badge">
-      <span class="gs-dot"></span>
-      <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank">
-        <!-- ✏️ Replace YOUR_SCHOLAR_ID in the href above with your actual Google Scholar user ID -->
-        View Google Scholar Profile ↗
-      </a>
-      <span class="update-note">Last updated: April 2026</span>
+
     </div>
   </div><!-- /header-section -->
 
-  <!-- ── TABS ── -->
+  <!-- ══════════════════════════════════════
+       TAB BAR  –  full-width, tabs centered
+  ══════════════════════════════════════ -->
   <div class="tab-wrapper">
     <ul class="tab">
-      <li><a href="#" class="tablinks active" onclick="openTab(event, 'Home')">Home</a></li>
-      <li><a href="#" class="tablinks" onclick="openTab(event, 'Project')">Projects</a></li>
-      <li><a href="#" class="tablinks" onclick="openTab(event, 'Publications')">Publications</a></li>
-      <li><a href="#" class="tablinks" onclick="openTab(event, 'Achievements')">Achievements</a></li>
-      <li><a href="#" class="tablinks" onclick="openTab(event, 'Contact')">Contact</a></li>
-      <li><a href="#" class="tablinks" onclick="openTab(event, 'Blog')">Blog</a></li>
+      <li><a href="#" class="tablinks active" onclick="openTab(event,'Home')">Home</a></li>
+      <li><a href="#" class="tablinks" onclick="openTab(event,'Project')">Projects</a></li>
+      <li><a href="#" class="tablinks" onclick="openTab(event,'Publications')">Publications</a></li>
+      <li><a href="#" class="tablinks" onclick="openTab(event,'Achievements')">Achievements</a></li>
+      <li><a href="#" class="tablinks" onclick="openTab(event,'Contact')">Contact</a></li>
+      <li><a href="#" class="tablinks" onclick="openTab(event,'Blog')">Blog</a></li>
     </ul>
   </div>
 
